@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>Rabobank Customer Statement Processor- Upload Status</h1>
+
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+<h3>Duplicate Records:</h3>
+<table>
+    <thead>
+        <tr>
+            <th> Reference </th>
+            <th> Description </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${duplicateRecords.empty}">
+            <td colspan="2"> No Duplicate Records found</td>
+        </tr>
+        <tr th:each="record : ${duplicateRecords}">
+            <td><span th:text="${record.reference}">  </span></td>
+            <td><span th:text="${record.description}">  </span></td>
+        </tr>
+    </tbody>
+</table>
+<h3>EndBalance Error Records:</h3>
+<table>
+    <thead>
+        <tr>
+            <th> Reference </th>
+            <th> accountNumber </th>
+            <th> Description </th>
+             <th> startBalance </th>
+              <th> mutation </th>
+               <th> endBalance </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${endBalancerecords.empty}">
+            <td colspan="2"> No end balance errors found  </td>
+        </tr>
+        <tr th:each="record : ${endBalancerecords}">
+            <td><span th:text="${record.reference}">  </span></td>
+            <td><span th:text="${record.accountNumber}">  </span></td>
+            <td><span th:text="${record.description}">  </span></td>
+            <td><span th:text="${record.startBalance}">  </span></td>
+            <td><span th:text="${record.mutation}">  </span></td>
+              <td><span th:text="${record.endBalance}">  </span></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

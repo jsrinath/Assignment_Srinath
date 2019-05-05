@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>An Anonymous Pen on CodePen</title>
+  
+  
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://unpkg.com/ng-table/bundles/ng-table.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+ <div ng-app="variantApp" class="container-fluid" style="color:#fff">
+  <div class="col-lg-8 col-md-8" ng-controller="variant_table_controller as variantCtrl">
+   
+<h1>Rabobank Issue Tracker</h1>
+<form >
+<div class="row">
+   <input type="file"  select-ng-files ng-model="fileArray" multiple/>    
+     <button type="button" ng-click="doUploadFile()">Upload</button><br />
+   </div>  
+</form>
+<!--   
+    <table ng-table="variantCtrl.variantsTable" show-filter="true" class="table table-bordered table-condensed">
+      <tr ng-repeat="variant in variantCtrl.data"> 
+        <td data-title="'chrom'" sortable="'chrom'" filter="{ 'name': 'text' }"> 
+          {{variant.name}}
+        </td>
+        <td data-title="'pos'" sortable="'pos'"  filter="variantCtrl.variantFilterDef">
+          {{variant.pos}}
+        </td>
+      </tr>
+    </table>
+    
+     -->
+      <table ng-table="variantCtrl.personTable" show-filter="true" class="table table-bordered table-condensed">
+      <tr ng-repeat="variant in variantCtrl.data"> 
+        <td data-title="'firstName'" sortable="'firstName'"> 
+          {{variant.firstName}}
+        </td>
+         <td data-title="'surName'" sortable="'surName'"> 
+          {{variant.surName}}
+        </td>
+         <td data-title="'DateOfbirth'" sortable="'dateofBirth'"> 
+          {{variant.dateofBirth}}
+        </td>
+        <td data-title="'issueCount'" sortable="'issueCount'"  filter="variantCtrl.variantFilterDef">
+          {{variant.issueCount}}
+        </td>
+      </tr>
+    </table>
+    
+    
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js'></script>
+<script src='https://unpkg.com/ng-table/bundles/ng-table.js'></script>
+
+       <script src="js/documentService.js"></script>
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>
