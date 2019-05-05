@@ -19,9 +19,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public String handleError2(MultipartException e) {
-
-        return "redirect:/errorPage";
+    public String handleError2(MultipartException e,RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("message", e.getCause().getMessage());
+        return "redirect:/uploadStatus";
 
     }
 

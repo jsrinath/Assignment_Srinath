@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
 <body>
 	<h1>Rabobank Customer Statement Processor- Upload Status</h1>
+			<div class="navbar">
+  <a href="home">go back Home</a>
+</div>
 	<div th:if="${success}">
-		<h2  style="color:#069" th:text="${success}" />
+		<h5  style="color:#069" th:text="${success}" />
 	</div>
 	<div th:if="${message}">
 		<h2  style="color:#ff0000" th:text="${message}" />
 	</div>
 	<div th:if="${duplicateRecords!=null}">
 		<h3>Duplicate Records:</h3>
-		<table>
-			<thead>
+		<table class="table">
+			<thead class="thead-dark">
 				<tr>
-					<th>Reference</th>
-					<th>Description</th>
+					<th scope="col">Reference</th>
+					<th scope="col">Description</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -31,15 +39,15 @@
 	<div th:if="${endBalancerecords!=null}">
 
 		<h3>EndBalance Error Records:</h3>
-		<table>
-			<thead>
+		<table  class="table">
+			<thead class="thead-dark">
 				<tr>
-					<th>Reference</th>
-					<th>accountNumber</th>
-					<th>Description</th>
-					<th>startBalance</th>
-					<th>mutation</th>
-					<th>endBalance</th>
+					<th scope="col">Reference</th>
+					<th scope="col">accountNumber</th>
+					<th scope="col">Description</th>
+					<th scope="col">startBalance</th>
+					<th scope="col">mutation</th>
+					<th scope="col">endBalance</th>
 				</tr>
 			</thead>
 			<tbody>

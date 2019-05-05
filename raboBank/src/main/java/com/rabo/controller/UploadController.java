@@ -23,6 +23,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.xml.bind.JAXBException;
+
 @Controller
 public class UploadController {
 
@@ -32,7 +34,7 @@ public class UploadController {
 	fileExtractorServiceImpl fileExtractor;
 	@Autowired 
 	ValidateorServiceImpl validator;
-	@GetMapping("/")
+	@GetMapping("/home")
 	public String index() {
 		return "upload";
 	}
@@ -54,7 +56,7 @@ public class UploadController {
 		}
 		if(!file.getContentType().equalsIgnoreCase(raboConstants.FILE_TYPE_CSV)
 				&& !file.getContentType().equalsIgnoreCase(raboConstants.FILE_TYPE_XML)){
-			redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+			redirectAttributes.addFlashAttribute("message", raboConstants.UNSUPORTED_FILE_FORMAT);
 			return "redirect:uploadStatus";
 		}
 		try {
@@ -74,9 +76,21 @@ public class UploadController {
 			redirectAttributes.addFlashAttribute("duplicateRecords", dupRcds);
 			redirectAttributes.addFlashAttribute("endBalancerecords", endblRcds);
 			redirectAttributes.addFlashAttribute("success",
-					"You successfully uploaded '" + file.getOriginalFilename() + "'");
+					"You have successfully uploaded '" + file.getOriginalFilename() + "'");
 
 		} catch (IOException e) {
+			redirectAttributes.addFlashAttribute("message", e.getCause().getMessage());
+			return "redirect:uploadStatus";
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			redirectAttributes.addFlashAttribute("message", e.getCause().getMessage());
+			return "redirect:uploadStatus";
+		}catch(java.lang.NumberFormatException e) {
+			redirectAttributes.addFlashAttribute("message", "Please enter valid number" + e.getCause().getMessage());
+			return "redirect:uploadStatus";
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
 			redirectAttributes.addFlashAttribute("message", e.getCause().getMessage());
 			return "redirect:uploadStatus";
 		}

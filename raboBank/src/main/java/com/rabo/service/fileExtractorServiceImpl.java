@@ -23,7 +23,7 @@ import com.rabo.model.Records;
 public class fileExtractorServiceImpl implements FileExtractorService {
 
 	@Override
-	public List<Record> extractCSVRecords(File file) {
+	public List<Record> extractCSVRecords(File file) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		try {
 			Reader reader = new FileReader(file);
@@ -43,14 +43,16 @@ public class fileExtractorServiceImpl implements FileExtractorService {
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw e;
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			throw e;
 		}
-		return null;
 	}
 	
 
 	@Override
-	public List<Person> extractCSVRecordsPerson(File file) {
+	public List<Person> extractCSVRecordsPerson(File file)  throws FileNotFoundException{
 		// TODO Auto-generated method stub
 		try {
 			Reader reader = new FileReader(file);
@@ -70,13 +72,12 @@ public class fileExtractorServiceImpl implements FileExtractorService {
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw e;
 		}
-		return null;
 	}
 	
 	
-	public List<Record> extractXMLRecords(File file){
+	public List<Record> extractXMLRecords(File file) throws JAXBException{
         JAXBContext jc;
         Records records = null;
 		try {
@@ -90,7 +91,7 @@ public class fileExtractorServiceImpl implements FileExtractorService {
 	        marshaller.marshal(records, System.out);*/
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw e;
 		}
 		
 		return records.getRecord();
