@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
 <body>
 
 <h1>Rabobank Customer Statement Processor</h1>
-
+<div class="panel panel-default">
+        <div class="panel-body">
 <form method="POST" action="/upload" enctype="multipart/form-data">
-    <input type="file" name="file" /><br/><br/>
-    <input type="submit" value="Submit" />
+ <div class="form-group">
+   <label for="myFileField">Select a file: </label>
+    <input type="file" name="file" class="form-control" /><br/><br/>
+     </div>
+    <input type="submit" value="Submit" class = "btn btn-primary" />
 </form>
-
+ </div>
+    </div>
 </body>
 </html>

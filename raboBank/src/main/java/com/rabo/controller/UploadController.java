@@ -36,14 +36,9 @@ public class UploadController {
 	public String index() {
 		return "upload";
 	}
-	@GetMapping("/test")
+	@GetMapping("/findCount")
 	public String indexTest() {
 		return "index";
-	}
-	
-	@GetMapping("/home")
-	public String mainPage() {
-		return "MainPage";
 	}
 
 	@PostMapping("/upload") // //new annotation since 4.3

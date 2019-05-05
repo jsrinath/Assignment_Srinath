@@ -18,11 +18,11 @@ public class GlobalExceptionHandler {
 
     }
 
-    /*@ExceptionHandler(MultipartException.class)
+    @ExceptionHandler(Exception.class)
     public String handleError2(MultipartException e) {
 
         return "redirect:/errorPage";
 
-    }*/
+    }
 
 }
