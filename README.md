@@ -7,11 +7,15 @@ Eclipse Oxygen prefferred IDE
 Maven (3.6 preferred)
 Steps to setup:
 1. Checkout code from https://github.com/jsrinath/Assignment_Srinath.git
-2. from the command prompt ,go to Project path (ex: ~/Assignment_Srinath/raboBank) and run mvn eclipse:eclipse command
-3. Open RaboWebApplication.java in IDE(eclipse) and run as Java Application,with that application will be launched:
+2. from the command prompt ,go to Project path (ex: ~/Assignment_Srinath/raboBank) 
+3. run mvn eclipse:eclipse command
+4. run mvn clean install
+5. Open RaboWebApplication.java in IDE(eclipse) and run as Java Application,with that application will be launched:
 
-Assignemnt BE - http://localhost:8080
-Assignment FE - http://localhost:8080/test
+Assignemnt BE - http://localhost:8990/
+Assignment FE - http://localhost:8990/findCount
 
 Tecnhology Used:
 Spring Boot and Angular 1
+
+TODO: Error Handling
