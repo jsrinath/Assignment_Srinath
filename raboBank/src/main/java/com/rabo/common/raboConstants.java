@@ -7,7 +7,7 @@ public interface raboConstants {
 	
 	public static final String UNSUPORTED_FILE_FORMAT = "Only csv or xml file allowed!!";
 	
-	public static final String FILE_TYPE_XML = "application/xml";
+	public static final String FILE_TYPE_XML = "text/xml";
 	public static final String FILE_TYPE_CSV = "application/vnd.ms-excel";
 	
 }

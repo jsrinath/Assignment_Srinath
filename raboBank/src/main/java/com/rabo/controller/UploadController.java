@@ -52,6 +52,11 @@ public class UploadController {
 			redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
 			return "redirect:uploadStatus";
 		}
+		if(!file.getContentType().equalsIgnoreCase(raboConstants.FILE_TYPE_CSV)
+				&& !file.getContentType().equalsIgnoreCase(raboConstants.FILE_TYPE_XML)){
+			redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+			return "redirect:uploadStatus";
+		}
 		try {
 			csvFile = new File(file.getOriginalFilename());
 			csvFile.createNewFile();
@@ -68,11 +73,12 @@ public class UploadController {
 			System.out.println(dupRcds.size());
 			redirectAttributes.addFlashAttribute("duplicateRecords", dupRcds);
 			redirectAttributes.addFlashAttribute("endBalancerecords", endblRcds);
-			redirectAttributes.addFlashAttribute("message",
+			redirectAttributes.addFlashAttribute("success",
 					"You successfully uploaded '" + file.getOriginalFilename() + "'");
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			redirectAttributes.addFlashAttribute("message", e.getCause().getMessage());
+			return "redirect:uploadStatus";
 		}
 
 		return "redirect:/uploadStatus";

@@ -25,6 +25,10 @@ public class HomeRestController {
 	@ResponseStatus(HttpStatus.OK)
 	public List<Person> singleFileUpload(@RequestParam("file") MultipartFile file){
 		System.out.println("file uploaded");
+		if (file.isEmpty()) {
+			System.out.println("Please select a file to upload");
+			return null;
+		}
 		File csvFile = new File(file.getOriginalFilename());
 		try {
 			csvFile.createNewFile();
