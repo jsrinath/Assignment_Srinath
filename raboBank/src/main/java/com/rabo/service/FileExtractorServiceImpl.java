@@ -3,30 +3,33 @@ package com.rabo.service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.opencsv.bean.ColumnPositionMappingStrategy;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import com.rabo.common.RaboConstants;
 import com.rabo.model.Person;
 import com.rabo.model.Record;
 import com.rabo.model.Records;
 @Service
-public class fileExtractorServiceImpl implements FileExtractorService {
+public class FileExtractorServiceImpl implements FileExtractorService {
+    private static final Logger logger = LoggerFactory.getLogger(FileExtractorServiceImpl.class);
 
 	@Override
-	public List<Record> extractCSVRecords(File file) throws FileNotFoundException {
-		// TODO Auto-generated method stub
-		try {
-			Reader reader = new FileReader(file);
+	public List<Record> extractCSVRecords(File file) throws IOException {
+		try(Reader reader = new FileReader(file);) {
+			 
 			ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();
 			
             strategy.setType(Record.class);
@@ -42,22 +45,19 @@ public class fileExtractorServiceImpl implements FileExtractorService {
             return recordList;
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw e;
+			logger.error(RaboConstants.ERROR.getValue(), e);
+			throw new FileNotFoundException("Test");
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			throw e;
+			logger.error(RaboConstants.ERROR.getValue(), e);
+			throw new NumberFormatException("Test");
 		}
 	}
 	
 
 	@Override
-	public List<Person> extractCSVRecordsPerson(File file)  throws FileNotFoundException{
-		// TODO Auto-generated method stub
-		try {
-			Reader reader = new FileReader(file);
+	public List<Person> extractCSVRecordsPerson(File file)  throws IOException{
+		try(Reader reader = new FileReader(file);) {
 			ColumnPositionMappingStrategy strategy = new ColumnPositionMappingStrategy();
-			
             strategy.setType(Person.class);
             String[] memberFieldsToBindTo = {"firstName","surName","issueCount","dateofBirth"};
             strategy.setColumnMapping(memberFieldsToBindTo);
@@ -71,8 +71,8 @@ public class fileExtractorServiceImpl implements FileExtractorService {
             return recordList;
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw e;
+			logger.error(RaboConstants.ERROR.getValue(), e);
+			throw new FileNotFoundException("Test");
 		}
 	}
 	
@@ -82,16 +82,11 @@ public class fileExtractorServiceImpl implements FileExtractorService {
         Records records = null;
 		try {
 			jc = JAXBContext.newInstance(Records.class);
-		
-
 	        Unmarshaller unmarshaller = jc.createUnmarshaller();
 	         records = (Records) unmarshaller.unmarshal(file);
-	     /*   Marshaller marshaller = jc.createMarshaller();
-	        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-	        marshaller.marshal(records, System.out);*/
 		} catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			throw e;
+			logger.error(RaboConstants.ERROR.getValue(), e);
+			throw new JAXBException("Test");
 		}
 		
 		return records.getRecord();

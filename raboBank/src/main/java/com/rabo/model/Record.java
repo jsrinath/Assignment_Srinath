@@ -1,7 +1,5 @@
 package com.rabo.model;
 
-import java.util.Objects;
-
 import javax.xml.bind.annotation.XmlAttribute;
 
 public class Record {
@@ -15,9 +13,6 @@ public class Record {
 	@XmlAttribute(name="reference")
 	public int getReference() {
 		return reference;
-	}
-	public Record(){
-		
 	}
 	public void setReference(int reference) {
 		this.reference = reference;
@@ -52,16 +47,4 @@ public class Record {
 	public void setEndBalance(double endBalance) {
 		this.endBalance = endBalance;
 	}
-	
-	 /* @Override
-	    public boolean equals(Object o) {
-	        if (this == o) return true;
-	        if (o == null || getClass() != o.getClass()) return false;
-	        Record rcd = (Record) o;
-	        return reference == rcd.reference;
-	    }
-	    @Override
-	    public int hashCode() {
-	        return Objects.hash(reference);
-	    }*/
 }

@@ -7,13 +7,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Records {
-	 List<Record> records;
+	 List<Record> recordsList;
 	 @XmlElement(name="record")
 	public List<Record> getRecord() {
-		return records;
+		return recordsList;
 	}
 
 	public void setRecord(List<Record> records) {
-		this.records = records;
+		this.recordsList = records;
 	}
 }

@@ -34,7 +34,6 @@ App.factory('docService', ['$http', '$q', 'urls', function ($http, $q, urls) {
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
-                            alert(errResponse.data.errorMessage);
                             deferred.reject(errResponse);
                         }
                     );

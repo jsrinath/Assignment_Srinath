@@ -70,7 +70,7 @@ App.controller('variant_table_controller', function(  $scope,$http, $filter, NgT
               
               },
               function (errResponse) {
-                  alert(errResponse.data.message);
+                //  alert(errResponse.data.message);
               }
           );
   }
